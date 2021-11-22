@@ -11,35 +11,7 @@ xWakeSetting::xWakeSetting(bool light, bool curtains, bool speaker, bool pressur
 {
 	lightEngaged = light;  curtainEngaged = curtains; speakerEngaged = speaker; pressurePlateEngaged = pressurePlate;
 	wakeUpHour = hour; wakeUpMinute = minute; awakeningPeriod = duration;
-	name = newName;
-}
 
-bool xWakeSetting::getLightEngaged() const
-{
-	return lightEngaged;
-}
-
-bool xWakeSetting::getCurtainEngaged() const
-{
-	return curtainEngaged;
-}
-
-bool xWakeSetting::getSpeakerEngaged() const
-{
-	return speakerEngaged;
-}
-
-bool xWakeSetting::getPressurePlateEngaged() const
-{
-	return pressurePlateEngaged;
-}
-
-int xWakeSetting::getWakeUpHour() const
-{
-	return wakeUpHour;
-}
-
-int xWakeSetting::getWakeUpMinute() const
 {
 	return wakeUpMinute;
 }

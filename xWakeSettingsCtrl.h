@@ -19,3 +19,4 @@ private:
 	
 };
 
+INTET VIRKER JEG FATTER IKKE NOGEt

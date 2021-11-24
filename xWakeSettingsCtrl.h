@@ -17,5 +17,7 @@ private:
 	bool settingsFileRead;
 	map<string, xWakeSetting> settingsMap;
 	
+
+	
 };
 

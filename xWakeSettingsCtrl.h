@@ -10,12 +10,14 @@ public:
 	xWakeSettingsCtrl();
 	void readSettingsFromFile();
 	string createSetting(string setting);
-	// updateSetting
+	xWakeSetting updateSetting(string);
 	bool deleteSetting(string);
+	vector<string> getSavedSettings();
 
 private:
 	bool settingsFileRead;
 	map<string, xWakeSetting> settingsMap;
 	
-};
+	bool saveSettingsToFile();
+}; 
 

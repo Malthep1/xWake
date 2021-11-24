@@ -1,0 +1,5 @@
+0 0 1 1 69 42 319 coolRoutine
+1 0 1 1 24 42 69 marchelka
+1 0 1 0 21 21 21 hello
+1 0 1 0 21 21 21 hello
+1 0 1 0 69 69 69 marchelka

@@ -6,6 +6,7 @@
 xWakeSettingsCtrl::xWakeSettingsCtrl()
 {
 	settingsFileRead = false;
+	
 }
 
 void xWakeSettingsCtrl::readSettingsFromFile()
@@ -50,15 +51,40 @@ string xWakeSettingsCtrl::createSetting(string setting)
 	xWakeSetting newSetting(booleans[0], booleans[1], booleans[2], booleans[3], timeSettings[0], timeSettings[1], timeSettings[2], toSet[7]);
 	settingsMap[toSet[7]] = newSetting;
 
-	// DEBUG
-	//cout << booleans[0] << " " << booleans[1] << " " << booleans[2] << " " << booleans[3] << " ";
-	//cout << timeSettings[0] << " " << timeSettings[1] << " " << timeSettings[2] << " ";
 	cout << newSetting.toString() << endl;
-
+	saveSettingsToFile();
 	return newSetting.toString();
+}
+
+xWakeSetting xWakeSettingsCtrl::updateSetting(string)
+{
+	return xWakeSetting();
 }
 
 bool xWakeSettingsCtrl::deleteSetting(string)
 {
+	return false;
+}
+
+vector<string> xWakeSettingsCtrl::getSavedSettings()
+{
+	return vector<string>();
+}
+
+bool xWakeSettingsCtrl::saveSettingsToFile()
+{
+	// Open the settings file
+	ofstream file;
+	file.open("xWakeSettings.txt", ios_base::app);
+	
+	// Iterate through settingsMap, write each setting to a single line
+	map<string, xWakeSetting>::iterator it = settingsMap.begin();
+
+	while (it != settingsMap.end())
+	{
+		file << (*it).second.toString() << endl;
+		
+		it++;
+	}
 	return false;
 }

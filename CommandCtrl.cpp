@@ -36,11 +36,10 @@ void CommandCtrl::executeCommand(string input)
 		commandLine.print("Creating new setting: " + command[1]);
 		commandLine.print("Please Input settings: ");
 		string newSettings = commandLine.awaitSettings();
-		
-		// TODO: Validate settings here.
 
 		settingsController.createSetting(newSettings + " " + command[1]);
 	}
+
 	else if (command[0] == "update")
 	{
 		// TODO update

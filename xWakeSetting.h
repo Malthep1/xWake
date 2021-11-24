@@ -16,6 +16,8 @@ private:
 	int awakeningPeriod;
 	string name;
 
+
+	// converts a bool to either a '1' or a '0'
 	char boolToChar(bool val) const;
 public:
 	bool getLightEngaged() const;

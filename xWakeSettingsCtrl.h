@@ -12,8 +12,8 @@ public:
 	void readSettingsFromFile();
 	bool validateSetting(string setting);
 	string createSetting(string setting);
-	xWakeSetting updateSetting(string);
-	bool deleteSetting(string);
+	bool updateSetting(string name, string setting);
+	bool deleteSetting(string name);
 	vector<string> getSavedSettings();
 	bool saveSettingsToFile();
 

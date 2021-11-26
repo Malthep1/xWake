@@ -33,25 +33,49 @@ void CommandCtrl::executeCommand(string input)
 		}
 
 		else
+		{
 			commandLine.print("Incorrect settings format || Numbers are not within the allowed interval");
+			commandLine.print("Settings format: {bool bool bool bool int int int} ");
+		}	
 	}
 
 	else if (command[0] == "update")
 	{
-		// TODO update
 		commandLine.print("Updating setting: " + command[1]);
+		commandLine.print("Please Input new settings: ");
+		string newSettings = commandLine.awaitSettings();
+
+		if (settingsController.validateSetting(newSettings))
+		{
+			bool found = settingsController.updateSetting(command[1], newSettings + " " + command[1]);
+			if (found)
+				commandLine.print("Setting " + command[1] + " updated: ");
+		}
+
+		else
+		{
+			commandLine.print("Incorrect settings format || Numbers are not within the allowed interval");
+			commandLine.print("Settings format: {bool bool bool bool int int int} ");
+		}
 	}
 	else if (command[0] == "delete")
 	{
-		// TODO delete
-		commandLine.print("Deleting setting: " + command[1]);
+		if(settingsController.deleteSetting(command[1]))
+			commandLine.print("Deleting setting: " + command[1]);
 	}
 	else if (command[0] == "list")
 	{
 		// TODO list
 		vector<string> allSettings = settingsController.getSavedSettings();
-		commandLine.print("Following settings are available: ");
-		commandLine.print(allSettings);
+		if (allSettings.size() == 0)
+		{
+			commandLine.print("There are no saved settings. Create new setting with {new settingName}");
+		}
+		else
+		{
+			commandLine.print("Following settings are available: ");
+			commandLine.print(allSettings);
+		}
 	}
 	else if (command[0] == "quit" || command[0] == "exit")
 	{

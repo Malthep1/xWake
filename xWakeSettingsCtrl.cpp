@@ -63,14 +63,33 @@ string xWakeSettingsCtrl::createSetting(string setting)
 	return newSetting.toString();
 }
 
-xWakeSetting xWakeSettingsCtrl::updateSetting(string)
+bool xWakeSettingsCtrl::updateSetting(string name, string setting)
 {
-	return xWakeSetting();
+	map<string, xWakeSetting>::iterator it;
+	it = settingsMap.find(name);
+	if (it == settingsMap.end())
+	{
+		cout << "Failed to find \"" + name + "\"" << endl;
+		return false;
+	}
+	settingsMap.erase(it);
+	createSetting(setting);
+	saveSettingsToFile();
+	return true;
 }
 
-bool xWakeSettingsCtrl::deleteSetting(string)
+bool xWakeSettingsCtrl::deleteSetting(string name)
 {
-	return false;
+	map<string, xWakeSetting>::iterator it;
+	it = settingsMap.find(name);
+	if (it == settingsMap.end())
+	{
+		cout << "Failed to find \"" + name + "\"" << endl;
+		return false;
+	}
+	settingsMap.erase(it);
+	saveSettingsToFile();
+	return true;
 }
 
 vector<string> xWakeSettingsCtrl::getSavedSettings()

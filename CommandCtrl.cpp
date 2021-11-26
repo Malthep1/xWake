@@ -3,7 +3,9 @@
 
 CommandCtrl::CommandCtrl()
 {
+	commandLine.print("xWake application initialized.");
 	settingsController.readSettingsFromFile();
+	commandLine.print("Settings loaded.");
 }
 
 void CommandCtrl::getNextCommand()

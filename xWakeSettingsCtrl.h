@@ -10,6 +10,7 @@ class xWakeSettingsCtrl
 public:
 	xWakeSettingsCtrl();
 	void readSettingsFromFile();
+	bool validateSetting(string setting);
 	string createSetting(string setting);
 	xWakeSetting updateSetting(string);
 	bool deleteSetting(string);

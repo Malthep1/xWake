@@ -121,3 +121,46 @@ vector<string> xWakeSettingsCtrl::spliceString(string str)
 	splicedString.push_back(str);
 	return splicedString;
 }
+
+
+bool xWakeSettingsCtrl::validateSetting(string setting)
+{
+	vector<string> settings = spliceString(setting);
+
+	if (settings.size() != 7)
+	{
+		return false;
+	}
+
+	// Check if the words can be converted to booleans
+	for (int i = 0; i < 4; i++)
+	{
+		if (settings[i] != "0" && settings[i] != "1")
+			return false;
+	}
+
+	// Check if the characters in the next 3 words can be converted to integers
+	for (int i = 4; i < 7; i++)
+	{
+		for (char c : settings[i])
+		{
+			if (c < '0' || c > '9')
+			{
+				return false;
+			}
+		}
+	}
+
+	// Check whether hours - mins and awakening period are within the correct intervals
+	if (stoi(settings[4]) < 0 || stoi(settings[4]) > 23)
+		return false;
+	if (stoi(settings[5]) < 0 || stoi(settings[5]) > 59)
+		return false;
+	if (stoi(settings[6]) < 0 || stoi(settings[6]) > 90)
+		return false;
+
+
+	// If we didn't return false until now, string is good to go
+	return true;
+}
+

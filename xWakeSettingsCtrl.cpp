@@ -1,5 +1,5 @@
 #include "xWakeSettingsCtrl.h"
-#include <iostream>
+
 
 
 
@@ -11,6 +11,25 @@ xWakeSettingsCtrl::xWakeSettingsCtrl()
 
 void xWakeSettingsCtrl::readSettingsFromFile()
 {
+	ifstream rfile("xWakeSettings.txt");
+	vector<string> toMap;
+	string line;
+	
+	if (rfile.is_open())
+	{
+		while (rfile)
+		{
+			getline(rfile, line);
+			if(line != "")
+				toMap.push_back(line);
+		}
+	}
+	
+	for (string line : toMap)
+	{
+		createSetting(line);
+	}
+	
 }
 
 // Would using arrays instea of vectors be faster? Containers have set length, so don't need dynamic size.
@@ -19,19 +38,9 @@ string xWakeSettingsCtrl::createSetting(string setting)
 	vector<string> toSet;
 	vector<bool> booleans;
 	vector<int> timeSettings;
-	string word;
-	string delim = " ";
-	string::size_type position;
 
 	// parse the string. Put each word separately into "toSet" vector
-	while ((position = setting.find(delim)) != string::npos)
-	{
-		word = setting.substr(0, position);
-		setting.erase(0, position + delim.length());
-
-		toSet.push_back(word);
-	}
-	toSet.push_back(setting);
+	toSet = spliceString(setting);
 
 	// Check the first 4 words, convert to booleans and put them in a vector
 	for (int i = 0; i < 4; i++)
@@ -51,8 +60,6 @@ string xWakeSettingsCtrl::createSetting(string setting)
 	xWakeSetting newSetting(booleans[0], booleans[1], booleans[2], booleans[3], timeSettings[0], timeSettings[1], timeSettings[2], toSet[7]);
 	settingsMap[toSet[7]] = newSetting;
 
-	cout << newSetting.toString() << endl;
-	saveSettingsToFile();
 	return newSetting.toString();
 }
 
@@ -68,14 +75,20 @@ bool xWakeSettingsCtrl::deleteSetting(string)
 
 vector<string> xWakeSettingsCtrl::getSavedSettings()
 {
-	return vector<string>();
+	vector<string> toReturn;
+	
+	for (auto iter = settingsMap.begin(); iter != settingsMap.end(); iter++ )
+	{
+		toReturn.push_back(iter->second.toString());
+	}
+	return toReturn;
 }
 
 bool xWakeSettingsCtrl::saveSettingsToFile()
 {
 	// Open the settings file
 	ofstream file;
-	file.open("xWakeSettings.txt", ios_base::app);
+	file.open("xWakeSettings.txt");
 	
 	// Iterate through settingsMap, write each setting to a single line
 	map<string, xWakeSetting>::iterator it = settingsMap.begin();
@@ -87,4 +100,24 @@ bool xWakeSettingsCtrl::saveSettingsToFile()
 		it++;
 	}
 	return false;
+}
+
+vector<string> xWakeSettingsCtrl::spliceString(string str)
+{
+	vector<string> splicedString;
+	string word;
+
+	// parse the string
+	string delim = " ";
+	string::size_type position;
+
+	while ((position = str.find(delim)) != string::npos)
+	{
+		word = str.substr(0, position);
+		str.erase(0, position + delim.length());
+
+		splicedString.push_back(word);
+	}
+	splicedString.push_back(str);
+	return splicedString;
 }

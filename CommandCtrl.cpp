@@ -3,7 +3,7 @@
 
 CommandCtrl::CommandCtrl()
 {
-
+	settingsController.readSettingsFromFile();
 }
 
 void CommandCtrl::getNextCommand()
@@ -27,6 +27,7 @@ void CommandCtrl::executeCommand(string input)
 		{
 			commandLine.print("New setting created: ");
 			settingsController.createSetting(newSettings + " " + command[1]);
+			settingsController.saveSettingsToFile();
 		}
 
 		else
@@ -42,6 +43,13 @@ void CommandCtrl::executeCommand(string input)
 	{
 		// TODO delete
 		commandLine.print("Deleting setting: " + command[1]);
+	}
+	else if (command[0] == "list")
+	{
+		// TODO list
+		vector<string> allSettings = settingsController.getSavedSettings();
+		commandLine.print("Following settings are available: ");
+		commandLine.print(allSettings);
 	}
 	else if (command[0] == "quit" || command[0] == "exit")
 	{

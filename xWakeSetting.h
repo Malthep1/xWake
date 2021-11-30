@@ -3,6 +3,7 @@
 using namespace std;
 class xWakeSetting
 {
+	// Data storage class to store settings on the PC
 public:
 	xWakeSetting();
 	xWakeSetting(bool, bool, bool, bool, int, int, int, string);
@@ -29,6 +30,5 @@ public:
 
 	// Convert all data to a single string
 	string toString() const;
-
 };
 

@@ -5,8 +5,7 @@
 
 xWakeSettingsCtrl::xWakeSettingsCtrl()
 {
-	settingsFileRead = false;
-	
+
 }
 
 void xWakeSettingsCtrl::readSettingsFromFile()

@@ -14,7 +14,7 @@ public:
 	xWakeSettingsCtrl();
 	// Read/Write to file
 	void readSettingsFromFile();
-	bool saveSettingsToFile();
+	void saveSettingsToFile();
 
 	// Checks if settings were input in a correct format
 	// Format : [bool bool bool bool int int int]

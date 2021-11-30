@@ -104,6 +104,7 @@ vector<string> CommandCtrl::spliceString(string str)
 
 		splicedString.push_back(word);
 	}
+	// while loop ends before the last word is pushed, so push that
 	splicedString.push_back(str);
 	return splicedString;
 }

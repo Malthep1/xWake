@@ -102,7 +102,7 @@ vector<string> xWakeSettingsCtrl::getSavedSettings()
 	return toReturn;
 }
 
-bool xWakeSettingsCtrl::saveSettingsToFile()
+void xWakeSettingsCtrl::saveSettingsToFile()
 {
 	// Open the settings file
 	ofstream file;
@@ -117,7 +117,6 @@ bool xWakeSettingsCtrl::saveSettingsToFile()
 		
 		it++;
 	}
-	return false;
 }
 
 vector<string> xWakeSettingsCtrl::spliceString(string str)

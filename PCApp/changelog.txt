@@ -1,0 +1,68 @@
+Changelog:
+
+30.11.2021
+
+General:
+- Methods are now 'const' when deemed appropriate (mainly getters)
+- Added descriptive comments in .h files
+- Added comments where deemed appropriate
+- Changed 'Controller' in class names to 'Ctrl'... for some reason
+
+CommandCtrl:
+- Added public bool running = true for testing and main loop purposes. Disabled at "quit/exit" commands
+- Added private splicedString(string) a helper method to split a string into several words. Returns vector <string> 
+- Implemented 'new', 'update', 'delete', 'list', 'exit' commands in executeCommand()
+- Now loads settings from file when initialized
+- Now displays a friendly message when initialized
+*TODO* 
+- Implement 'program' command (after UARTCom is implemented)
+
+xWakeSettingsCtrl:
+- Changed return type of saveSettingsToFile() to void. Can't see why it should return something
+- Added private splicedString(string) a helper method to split a string into several words. Returns vector <string>
+- Added public validateSetting(string) a method to check if the syntax of the input settings is correct. Returns bool
+- updateSettings(string) now takes 2 strings as a parameter. One for name, one for a new setting
+*TODO*
+- Implement getSetting(string name) : vector <string> . Get a single setting from available settings. Used to program a specific settings. 
+  Return type has to be vector <string> ?
+  
+xWakeSetting:
+- Added private boolToChar(bool) a helper method to convert a boolean into a character. Used by toString() to convert bool settings into '0's and '1's
+- Created a constructor that takes 8 parameters : all settings data and a string name
+
+
+04/12/2021:
+
+General:
+- spliceString(string) method is now a static (global) function in class common ("common.h").
+- Implemented serial communication using CSerial class ("serial.h").
+- Implemented UARTCom class.
+- Implemented getting and sending time via uart (part of "program" command).
+- First draft of the transmitter is done. Communication was tested and seemed to work using "program" command on pcapp. It's more complex than initially
+  assumed. Needs to use state machine to make sure correct values are stored at the correct time, and to keep interrupts in check.
+- Added appTest.c : a simple tester with a main function.
+
+xWakeSettingsCtrl:
+- Changed return type and parameter list of getSetting(). Now takes 2 strings, one name, one string to pass by reference. Returns bool if the name
+  is found.
+
+CommandCtrl:
+- Implemented "program" command when executing commands from CLI.
+- Change: UARTCom is created only during "program" command, 
+
+UARTCom:
+- Now exists.
+- Uses CSerial class found at https://www.codeguru.com/network/cserial-a-c-class-for-serial-communications/
+- CSerial is a simple class that implements uart control for sending/receiving data. Only certain baudRates work, documented on link above. Current: 9600
+- CSerial needs correct COM port number to work, meaning COM port might have to be passed as a variable to a function. 
+  Right now hard coded to 4 (can be changed in UARTCom constructor).
+- UARTCom now has a CSerial object.
+- Uses time.h to get local system time when programming a PSoC transmitter.
+- Uses dynamic memory allocation (vector pointer).
+- Waits 3 sec between sending local time and wakeup settings to let the transmitter sort out data.
+
+
+
+
+
+ 

@@ -14,7 +14,7 @@
 #include "project.h"
     
     
-void initiateLightTimer();
+void initiateLights();
 void startLights(uint8_t duration);
 void turnOffLights();
     

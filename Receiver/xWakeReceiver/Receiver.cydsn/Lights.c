@@ -17,10 +17,11 @@ CY_ISR_PROTO(ISR_LIGHT_TIMER_handler);
 uint8 timer = 0;
 uint8 brigteningDuration = 0;
 
-void initiateLightTimer(){
+void initiateLights(){
     isr_light_timer_StartEx(ISR_LIGHT_TIMER_handler);
     PWM_1_Start();
     PWM_1_WriteCompare(0);
+    Timer_1_Start();
 }
 
 void startLights(uint8_t duration){
@@ -28,7 +29,7 @@ void startLights(uint8_t duration){
     brigteningDuration = duration;
 }
 
-void stopLights(){
+void turnOffLights(){
     PWM_1_WriteCompare(0);
 }
 

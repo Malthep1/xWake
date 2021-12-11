@@ -26,7 +26,7 @@ void initiateReceiver(){
 }
 
 uint8_t checkEnvelope(){
-    return PIN_ENVELOPE_Read();
+    return ~PIN_ENVELOPE_Read();
 }
 
 void setCurrentBit(){

@@ -9,5 +9,14 @@
  *
  * ========================================
 */
-
+#ifndef Lights_H
+#define Lights_H
+#include "project.h"
+    
+    
+void initiateLightTimer();
+void startLights(uint8_t duration);
+void turnOffLights();
+    
+#endif /* Lights_H */   
 /* [] END OF FILE */

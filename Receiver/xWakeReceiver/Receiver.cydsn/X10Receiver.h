@@ -9,5 +9,13 @@
  *
  * ========================================
 */
-
+#ifndef X10Receiver_H
+#define X10Receiver_H
+#include "stdio.h"
+    
+void initiateReceiver();
+uint8_t checkEnvelope();
+void setCurrentBit();
+    
+#endif /* X10Receiver_H */   
 /* [] END OF FILE */

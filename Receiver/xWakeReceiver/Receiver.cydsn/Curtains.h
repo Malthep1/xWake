@@ -9,5 +9,13 @@
  *
  * ========================================
 */
+#ifndef Curtains_H
+#define Curtains_H
+#include "stdio.h"   
 
+void driveMotor(uint8_t direction);
+void togglePin(int pinno);
+void resetPins();
+
+#endif /* Curtains_H */   
 /* [] END OF FILE */

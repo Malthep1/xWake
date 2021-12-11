@@ -9,5 +9,10 @@
  *
  * ========================================
 */
+#ifndef PressurePlate_H
+#define PressurePlate_H
 
+void initiatePressurePlate();
+    
+#endif /* PressurePlate_H */   
 /* [] END OF FILE */

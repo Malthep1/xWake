@@ -9,5 +9,9 @@
  *
  * ========================================
 */
-
+#ifndef Speaker_H
+#define Speaker_H
+    
+    
+#endif /* Speaker_H */   
 /* [] END OF FILE */

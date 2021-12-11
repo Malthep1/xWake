@@ -34,9 +34,13 @@ void turnOffLights(){
 }
 
 CY_ISR(ISR_LIGHT_TIMER_handler){
+    Timer_1_ReadStatusRegister();
     if(timer){
         timer -= 1;
         PWM_1_WriteCompare(((70/brigteningDuration) * (brigteningDuration - timer)) + 2.33);
+        if(timer == 0){
+            PWM_1_WriteCompare(100);
+        }
     }
     UART_1_PutString("LightTimer Interrupt \r\n");
 }

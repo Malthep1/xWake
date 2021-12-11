@@ -18,6 +18,7 @@
 #include "Speaker.h"
 
 void executeCommand(uint8_t command);
+uint8_t extractLightParameter(uint8_t command);
 
 int main(void)
 {
@@ -81,12 +82,24 @@ void executeCommand(uint8_t command){
     //Lights - 00
     if((command & (1 << 15)) == 0 && (command & (1 << 14)) == 0){
         if(command & (1 << 13)){
-            //12-11-10-9-8-7 are the bits ya need
+            startLights(extractLightParameter(command));
         }
         else{
             turnOffLights();
         }
     }
+}
+
+//12-11-10-9-8-7 are the bits ya need
+uint8_t extractLightParameter(uint8_t command){
+    uint8_t result = 0;
+    if(command & (1 << 12)){    result += 32;   }
+    if(command & (1 << 11)){    result += 16;   }
+    if(command & (1 << 10)){    result += 8;    }    //Looks a little nasty, better way?    
+    if(command & (1 << 9)) {    result += 4;    }    //Maybe bitmask and shift it into LSB and take result?
+    if(command & (1 << 8)) {    result += 2;    }
+    if(command & (1 << 7)) {    result += 1;    }
+    return result;
 }
 
 /* [] END OF FILE */

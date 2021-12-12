@@ -64,6 +64,7 @@ uint16_t decodeCommand(uint32_t encodedCommand){
 }
 
 CY_ISR(ISR_ZX_handler){
+    UART_1_PutString("Crossing");
     if(checkEnvelope()){
         setCurrentBit();
         zeroesInRow = 0;

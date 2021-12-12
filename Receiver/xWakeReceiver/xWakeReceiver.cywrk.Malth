@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="xWakeReceiver\Receiver\Source Files\Lights.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="xWakeReceiver\Receiver\Source Files\X10Receiver.c">
 <ExpandedNodeIds>
 <v>xWakeReceiver</v>
 <v>xWakeReceiver\Receiver</v>
@@ -115,7 +115,7 @@
 <v>xWakeReceiver\Receiver\TopDesign\TopDesign.cysch</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="xWakeReceiver\Receiver">
 <ExpandedNodeIds>
 <v>xWakeReceiver</v>
 <v>xWakeReceiver\Receiver</v>
@@ -237,10 +237,9 @@
 <v>xWakeReceiver\Receiver\PSoC 5LP Architecture TRM</v>
 <v>xWakeReceiver\Receiver\CY8C58LP Family Datasheet</v>
 <v>xWakeReceiver\Receiver\System Reference Guides</v>
-<v>xWakeReceiver\Receiver\System Reference Guides\cy_boot_v5_70</v>
+<v>xWakeReceiver\Receiver\System Reference Guides\cy_boot_v6_10</v>
 <v>xWakeReceiver\Receiver\cy_clock_v2_20</v>
 <v>xWakeReceiver\Receiver\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>xWakeReceiver\Receiver\cy_isr_v1_70.pdf</v>
 <v>xWakeReceiver\Receiver\cy_isr_v1_71</v>
 <v>xWakeReceiver\Receiver\cy_isr_v1_71\cy_isr_v1_71.pdf</v>
 <v>xWakeReceiver\Receiver\cy_pins_v2_20</v>
@@ -256,10 +255,9 @@
 <v>xWakeReceiver\Receiver\PSoC 5LP Architecture TRM</v>
 <v>xWakeReceiver\Receiver\CY8C58LP Family Datasheet</v>
 <v>xWakeReceiver\Receiver\System Reference Guides</v>
-<v>xWakeReceiver\Receiver\System Reference Guides\cy_boot_v5_70</v>
+<v>xWakeReceiver\Receiver\System Reference Guides\cy_boot_v6_10</v>
 <v>xWakeReceiver\Receiver\cy_clock_v2_20</v>
 <v>xWakeReceiver\Receiver\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>xWakeReceiver\Receiver\cy_isr_v1_70.pdf</v>
 <v>xWakeReceiver\Receiver\cy_isr_v1_71</v>
 <v>xWakeReceiver\Receiver\cy_isr_v1_71\cy_isr_v1_71.pdf</v>
 <v>xWakeReceiver\Receiver\cy_pins_v2_20</v>
@@ -282,21 +280,9 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Design01.cydsn\PressurePlate.c" />
-<name v=".\Design01.cydsn\Lights.c" />
-<name v=".\Design01.cydsn\Curtains.c" />
-<name v=".\Design01.cydsn\Speaker.c" />
-<name v=".\Design01.cydsn\Lights.h" />
-<name v=".\Design01.cydsn\Curtains.h" />
-<name v=".\Design01.cydsn\PressurePlate.h" />
-<name v=".\Design01.cydsn\Speaker.h" />
-<name v=".\Design01.cydsn\cyapicallbacks.h" />
-<name v=".\Design01.cydsn\main.c" />
-<name v=".\Design01.cydsn\X10Receiver.c" />
-<name v=".\Design01.cydsn\X10Receiver.h" />
-<name v=".\Design01.cydsn\Queue.c" />
-<name v=".\Design01.cydsn\Queue.h" />
+<name v=".\Receiver.cydsn\X10Receiver.c" />
+<name v=".\Receiver.cydsn\Queue.c" />
+<name v=".\Receiver.cydsn\main.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -304,7 +290,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="865, 724" SelectedTabbedMdiWindow="4af4f41c-a0f3-4e16-ab52-00ac31c1bc66"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d80901aa-3f1c-44d9-9561-d31eebc76efa" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="479ea80f-372d-42e2-ae60-a6d8de170b84" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\PressurePlate.c" Guid="376f25d7-a11d-4996-a536-83591858ca34" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Lights.c" Guid="a456b791-7bc1-4fd2-a534-7e6c6df64948" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Curtains.c" Guid="880aaa93-d974-4c56-a797-acf2ac7da5c2" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Speaker.c" Guid="2b404b2c-37e3-4613-b965-f9985baa5ff3" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Lights.h" Guid="39b546b8-f056-4285-8415-2f6355a6d5ca" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Curtains.h" Guid="3bf50dc2-8edf-4d77-ac36-7103a787e73f" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\PressurePlate.h" Guid="cc183248-2946-474f-ba50-af8996604095" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Speaker.h" Guid="4bbddc68-c322-478f-a1e6-06fe0b0259fd" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\cyapicallbacks.h" Guid="58b672a0-929d-40db-8efe-915c7a3a1339" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\main.c" Guid="6b941c90-8e14-46b1-8949-2e220a193306" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\X10Receiver.c" Guid="3c695185-6080-4bd0-9ffa-b048443aadc7" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\X10Receiver.h" Guid="4a6db459-43e4-4f8e-8ecf-2c590b446f7d" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Queue.c" Guid="4af4f41c-a0f3-4e16-ab52-00ac31c1bc66" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Design01.cydsn\Queue.h" Guid="4dcf5ada-363f-490b-bb6d-1a17bfac8698" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="2867, 976" SelectedTabbedMdiWindow="ddc32715-5f99-4c06-a305-1d448dafe922"><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Receiver.cydsn\X10Receiver.c" Guid="3c695185-6080-4bd0-9ffa-b048443aadc7" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Receiver.cydsn\Queue.c" Guid="fe904532-906a-470c-94d6-3e212f4aab56" /><DocumentWindow Key="C:\Users\Malth\Documents\SW2PROJ-xWake\xWake\xWake\Receiver\xWakeReceiver\Receiver.cydsn\main.c" Guid="ddc32715-5f99-4c06-a305-1d448dafe922" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

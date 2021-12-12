@@ -10,7 +10,6 @@
  * ========================================
 */
 #include "stdio.h"
-
 #define queueSize 10
 
 /* 
@@ -30,14 +29,14 @@ void insertCommand(uint16_t command){
         if(rearPoint == 0){
             queueState = 1;
         }
-        rearPoint = rearPoint + 1;
         queue[rearPoint] = command;
+        rearPoint = rearPoint + 1;
     }
 }
 uint16_t withdrawCommand(){
   uint16_t temp = queue[frontPoint];
   frontPoint = frontPoint + 1;
-  if(frontPoint > rearPoint ){
+  if(frontPoint == rearPoint ){
     frontPoint = 0;
     rearPoint = 0;
     queueState = 0;

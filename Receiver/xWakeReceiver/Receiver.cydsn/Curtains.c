@@ -14,7 +14,7 @@
 #define CURTAINROATIONLENGTH 50
 uint8_t rotationsFromStart = 0;
 uint8_t rotations = 0;
-uint8_t drivestate = 0;
+uint8_t drivestate = 1;
 uint8_t drivedelay = 20;
 
 void togglePin(int pinno);
@@ -56,7 +56,6 @@ void driveMotor(uint8_t direction){
                     }
 
                 }
-                rotations = rotations + 1;
             }
             case 2: // Half-Step. Toggles first pin -> Delay -> Toggles 2nd pin -> Delay -> Toggles first pin -> Delay -> Toggles 3rd -> Delay
             { // Implemented toggle here,  think it's slower. If direction == 1 -> Inverted.
@@ -98,7 +97,6 @@ void driveMotor(uint8_t direction){
                         CyDelay(drivedelay);
                     }
                 }
-                rotations = rotations + 1;
             }
             case 3: // Full-Step(2 phases). Toggles 1st and 2nd pin -> toggles 1st and 3rd pin -> Toggles 2nd and 4th pin. 
             {       // If direction == 1 -> Inverted.
@@ -132,9 +130,10 @@ void driveMotor(uint8_t direction){
                         CyDelay(drivedelay);
                     }
                 }
-                rotations = rotations + 1;
+
             }
         }
+        rotations = rotations + 1;
     }
     rotations = 0; 
 }

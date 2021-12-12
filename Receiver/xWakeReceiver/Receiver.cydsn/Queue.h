@@ -13,8 +13,8 @@
 #ifndef Queue_H
 #define Queue_H
     
-void insertCommand(uint8_t command);
-uint8_t withdrawCommand();
+void insertCommand(uint16_t command);
+uint16_t withdrawCommand();
 uint8_t commandReady();
     
 #endif /* Queue_H */   

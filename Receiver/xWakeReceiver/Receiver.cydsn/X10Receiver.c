@@ -37,20 +37,19 @@ void setCurrentBit(){
 }
 
 uint8_t parityCheck(uint16_t readCommand){
-    return 1;
-    /*if(readCommand & (1 << 6)){
-        if(readCommand % 2){
-            
-            return 0;
+    uint8_t ones = 0;
+    for (uint8_t i = 16; i > 0; i--)
+    {
+        if(readCommand & (1 << (i-1))){
+            ones++;
         }
+    }
+    if(ones % 2){ // if there is something left it is not an even number of ones: Something is wrong.
+        return 0;
+    }
+    else{ //if there is nothing left after %2 then the number is even and parity is true.
         return 1;
     }
-    else{
-        if(readCommand % 2){
-            return 1;
-        }
-        return 0;
-    }*/
 }
 
 uint16_t decodeCommand(uint32_t encodedCommand){
@@ -75,7 +74,9 @@ CY_ISR(ISR_ZX_handler){
     //UART_1_PutString("Crossing");
     if(checkEnvelope()){
         UART_1_PutString("1");
-        setCurrentBit();
+        if(startCodeReceived == 1){
+            setCurrentBit();
+        }
         zeroesInRow = 0;
         onesInRow += 1;
     }
@@ -116,7 +117,7 @@ CY_ISR(ISR_ZX_handler){
             startCodeReceived = 0;
             insertCommand(command);     //Only Insert into queue for execution, IF PARITY CHECKS OUT.
             snprintf(buff, sizeof(buff), "cmd = %d", command);
-        UART_1_PutString(buff);
+            UART_1_PutString(buff);
         }
         bitNumber = 29;
         received = 0b00000000000000000000000000000000;

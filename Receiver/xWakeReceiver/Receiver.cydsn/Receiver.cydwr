@@ -250,6 +250,12 @@
   </Group>
   <Data key="DataVersionKey" value="2" />
   <Group key="DWRInstGuidMapping">
+    <Group key="Interrupt">
+      <Data key="3f62e0b1-5b99-46ec-b689-a84671ffc739" value="isr_zx" />
+      <Data key="85ecc733-73f2-45ca-87af-396904ff0034" value="isr_uart_rx" />
+      <Data key="a9b2ebef-9403-4545-9499-b13f3f058033" value="isr_light_timer" />
+      <Data key="d36ea968-5beb-4b15-99b4-600d8abe134e" value="isr_pressure_plate" />
+    </Group>
     <Group key="Pin">
       <Data key="1f196d82-c292-4d1e-9c15-168f70c3358a" value="PIN_ZX" />
       <Data key="6d2e3ac4-ca32-4bf9-a45a-b90db22c38c7" value="Pin_Motor_a2" />
@@ -3346,10 +3352,19 @@
       </Group>
     </Group>
   </Group>
+  <Group key="Interrupt">
+    <Group key="3f62e0b1-5b99-46ec-b689-a84671ffc739">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="0" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
+  </Group>
   <Group key="Pin2">
     <Group key="1f196d82-c292-4d1e-9c15-168f70c3358a">
       <Group key="0">
-        <Data key="Port Format" value="12,0" />
+        <Data key="Port Format" value="2,0" />
       </Group>
     </Group>
     <Group key="6d2e3ac4-ca32-4bf9-a45a-b90db22c38c7">
@@ -3359,7 +3374,7 @@
     </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
       <Group key="0">
-        <Data key="Port Format" value="12,1" />
+        <Data key="Port Format" value="2,2" />
       </Group>
     </Group>
     <Group key="14c558b3-b39b-4cbb-889b-ab577d8fa397">
@@ -3387,17 +3402,16 @@
         <Data key="Port Format" value="12,6" />
       </Group>
     </Group>
-    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
-      <Group key="0">
-        <Data key="Port Format" value="2,0" />
-      </Group>
-    </Group>
     <Group key="ed092b9b-d398-4703-be89-cebf998501f6">
       <Group key="0">
         <Data key="Port Format" value="12,7" />
       </Group>
     </Group>
-    <Group key="UnAssigned Pins" />
+    <Group key="UnAssigned Pins">
+      <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
+        <Data key="0" value="132839646278567944" />
+      </Group>
+    </Group>
   </Group>
   <Group key="PlaceDir">
     <Data key="count" value="0" />

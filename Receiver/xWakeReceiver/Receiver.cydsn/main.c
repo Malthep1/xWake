@@ -17,8 +17,8 @@
 #include "Lights.h"
 #include "Speaker.h"
 
-void executeCommand(uint16_t command);
-uint8_t extractLightParameter(uint8_t command);
+uint8_t executeCommand(uint16_t command);
+uint8_t extractLightParameter(uint16_t command);
 void printInteger(int number);
 
 int main(void)
@@ -29,13 +29,15 @@ int main(void)
     initiatePressurePlate();
     initiateLights();
     UART_1_PutString("here we go!\r\n");
+    
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    uint16_t testcommand = 0b1000000000000000;
-    insertCommand(testcommand);
     for(;;)
     {
         if(commandReady()){
-            executeCommand(withdrawCommand());
+            uint8_t status = executeCommand(withdrawCommand());
+            if(!status){
+                UART_1_PutString("Fejl");
+            }
         }
         CyDelay(100);
     }
@@ -55,9 +57,11 @@ CY_ISR(ISR_UART_rx_handler)
     }
 }
 
-void executeCommand(uint16_t command){
+uint8_t executeCommand(uint16_t command){
     //Execute next command
-    
+    if(command == 1){
+        return 0;
+    }
     //Pressure Plate - 11
     if(command & (1 << 15) && command & (1 << 14)){
         if(command & (1 << 13)){
@@ -102,10 +106,14 @@ void executeCommand(uint16_t command){
             UART_1_PutString("Lights Disengaged\r\n");
         }
     }
+    else{
+        return 0;
+    }
+    return 1;
 }
 
 //12-11-10-9-8-7 are the bits ya need
-uint8_t extractLightParameter(uint8_t command){
+uint8_t extractLightParameter(uint16_t command){
     uint8_t result = 0;
     if(command & (1 << 12)){    result += 32;   }
     if(command & (1 << 11)){    result += 16;   }

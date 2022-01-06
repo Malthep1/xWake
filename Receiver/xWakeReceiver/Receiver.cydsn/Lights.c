@@ -34,19 +34,19 @@ void startLights(uint8_t duration){
     brigteningDuration = duration;
     Timer_1_Wakeup();
     isr_light_timer_Enable();
+    PWM_1_WriteCompare(10);
 }
 
 void turnOffLights(){
-    PWM_1_WriteCompare(0);
-    Timer_1_Sleep();
-    isr_light_timer_Disable();
+//
+    
 }
 
 CY_ISR(ISR_LIGHT_TIMER_handler){
     //Timer_1_ReadStatusRegister();
     if(timer){
         timer -= 1;
-        PWM_1_WriteCompare(((30/brigteningDuration) * (brigteningDuration - timer)) + 2.33);
+        PWM_1_WriteCompare(((70/brigteningDuration) * (brigteningDuration - timer)) + 2.33);
         uint8_t pwm = PWM_1_ReadCompare();
         char buff[10];
         snprintf(buff, sizeof(buff), "pwm: %d", pwm);

@@ -60,21 +60,25 @@ uint16_t decodeCommand(uint32_t encodedCommand){
     {
         //return 1;
     }
+    UART_1_PutString("\r\n");
+    UART_1_PutString("d");
     uint8_t decodedCommandBitReached = 15;
     uint16_t decodedCommand = 0b0000000000000000;
     for (int8_t decodingPoint = 27; decodingPoint > (bitNumber+4); decodingPoint -= 2){
         if(encodedCommand & (1 << decodingPoint) && (encodedCommand & (1 << (decodingPoint-1))) == 0){
             decodedCommand |= 1UL << decodedCommandBitReached;
-            UART_1_PutString("d1");
+            UART_1_PutString("1");
         }
         else if((encodedCommand & (1 << (decodingPoint))) == 0 && encodedCommand & (1 << (decodingPoint-1))){
-            UART_1_PutString("d0");
+            UART_1_PutString("0");
         }
         else if((encodedCommand & (1 << (decodingPoint))) == 0 && (encodedCommand & (1 << (decodingPoint-1))) == 0){ 
             return decodedCommand;  //if 2 zeroes were sent together, command end must be reached
         }
+        //UART_1_PutString("loop+1");
         decodedCommandBitReached -= 1;
     }
+    UART_1_PutString("d\r\n");
     return decodedCommand;
 }
 
@@ -96,7 +100,7 @@ CY_ISR(ISR_ZX_handler){
     if(onesInRow == 3){
         startCodeReceived = 1;
         received = 0b11100000000000000000000000000000;
-        UART_1_PutString("Startcode");
+        UART_1_PutString("three 1's");
     }
     /*if(bitNumber == 27){  // Check if start code, if not reset received bits.
         if(received & (1 << 31) && received & (1 << 30) && received & (1 << 29) && (received & (1 << 28)) == 0 ){
@@ -113,28 +117,34 @@ CY_ISR(ISR_ZX_handler){
     }*/
     if(startCodeReceived == 1)
     {
-        bitNumber = bitNumber - 1;
-        if(zeroesInRow == 4){
-        //UART_1_PutString("4 o's");
-        isr_zx_Disable();
-
-        uint16_t command = decodeCommand(received);
-        if(parityCheck(command)){
-            if(command == 0b1111111111111111 || command == 1){
-                UART_1_PutString("Protocol Error \r\n");
-            }
-            else{
-                UART_1_PutString("Command Inserted \r\n"); 
-                insertCommand(command);
-                startCodeReceived = 0;
-            }
+        if(received & (1 << 28)){
+            UART_1_PutString("Starcode Error \r\n");
         }
-        bitNumber = 29;
-        received = 0b00000000000000000000000000000000;
-        isr_zx_Enable();
+        else{
+            //UART_1_PutString("Startcode valid");
+            bitNumber = bitNumber - 1;
+            if(zeroesInRow == 4){
+                //UART_1_PutString("4 o's");
+                isr_zx_Disable();
+
+                uint16_t command = decodeCommand(received);
+                if(parityCheck(command)){
+                    if(command == 0b1111111111111111 || command == 1){
+                        UART_1_PutString("Protocol Error \r\n");
+                    }
+                    else{
+                        UART_1_PutString("Command Inserted \r\n"); 
+                        insertCommand(command);
+                    }
+                    startCodeReceived = 0;
+                    bitNumber = 29;
+                    received = 0b00000000000000000000000000000000;
+                }
+                isr_zx_Enable();
+            }
         }
     }
-    
+    Timer_2_STATUS;
 }
 
 

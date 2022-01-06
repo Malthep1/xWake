@@ -14,8 +14,8 @@
 #define CURTAINROATIONLENGTH 50
 uint8_t rotationsFromStart = 0;
 uint8_t rotations = 0;
-uint8_t drivestate = 1;
-uint8_t drivedelay = 20;
+uint8_t drivestate = 2;
+uint8_t drivedelay = 100;
 
 void togglePin(int pinno);
 void resetPins();
@@ -26,18 +26,19 @@ void driveMotor(uint8_t direction){
             case 1: // Wavedrive. Toggles pin -> Delay ->  Toggles next pin, then Toggles first pin off.
             {       // If direction == 1 -> Inverted.
                 if(direction == 1){
-                    Pin_Motor_b2_Write(1);
-                    Pin_Motor_a_Write(0);
+                    Pin_Motor_a_Write(1);
+                    Pin_Motor_b2_Write(0);
                     CyDelay(drivedelay);
                     Pin_Motor_b_Write(1);
-                    Pin_Motor_b2_Write(0);
+                    Pin_Motor_a_Write(0);
                     CyDelay(drivedelay);
                     Pin_Motor_a2_Write(1);
                     Pin_Motor_b_Write(0);
                     CyDelay(drivedelay);
-                    Pin_Motor_a_Write(1);
+                    Pin_Motor_b2_Write(1);
                     Pin_Motor_a2_Write(0);
                     CyDelay(drivedelay);
+                    UART_1_PutString("Rotated");
                 }
                 else {
                     if(rotationsFromStart != 0){
@@ -132,9 +133,9 @@ void driveMotor(uint8_t direction){
                 }
 
             }
-        }
-        rotations = rotations + 1;
     }
+    rotations = rotations + 1;
+}
     rotations = 0; 
 }
 void togglePin(int pinno){ 

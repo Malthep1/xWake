@@ -13,9 +13,10 @@
 #include "X10Receiver.h"
 #include "Queue.h"
 #include "PressurePlate.h"
-#include "Curtains.h"
 #include "Lights.h"
 #include "Speaker.h"
+#include "States.h"
+#include "StepperMotorDrivers.h"
 
 uint8_t executeCommand(uint16_t command);
 uint8_t extractLightParameter(uint16_t command);
@@ -26,8 +27,10 @@ int main(void)
     CyGlobalIntEnable; /* Enable global interrupts. */
     UART_1_Start();
     initiateReceiver();
+    Timer_2_Start();
     initiatePressurePlate();
     initiateLights();
+    initiateSpeaker();
     UART_1_PutString("here we go!\r\n");
     
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
@@ -77,19 +80,30 @@ uint8_t executeCommand(uint16_t command){
     //Curtains - 10
     else if(command & (1 << 15) && (command & (1 << 14)) == 0){
         if(command & (1 << 13)){
-            driveMotor(0); // Roll curtains 50% up
+            //driveMotor(1); // Roll curtains 50% up
+            driveForwards();
+            for(int i = 0; i < 100;i++){
+                drive();
+                CyDelay(20);
+            }
             UART_1_PutString("Curtains Up 50% \r\n");
         }
         else{
-            driveMotor(1); // Roll curtains 50% down
+            driveBackwards();
+            for(int i = 0; i < 100;i++){
+                drive();
+                CyDelay(20);
+            }
             UART_1_PutString("Curtains Down 50% \r\n");
         }
     }
     
     //Speaker - 01
     else if((command & (1 << 15)) == 0 && command & (1 << 14)){
-        //Screeech speakers???? UART ??? 
         UART_1_PutString("Speaker Engaged \r\n");
+        if(command & (1 << 13)){
+            startSpeaker();
+        }
     }
     
     //Lights - 00
@@ -103,7 +117,6 @@ uint8_t executeCommand(uint16_t command){
         }
         else{
             turnOffLights();
-            UART_1_PutString("Lights Disengaged\r\n");
         }
     }
     else{

@@ -12,6 +12,9 @@
 #ifndef Speaker_H
 #define Speaker_H
     
+void initiateSpeaker();
+void startSpeaker();
+
     
 #endif /* Speaker_H */   
 /* [] END OF FILE */
